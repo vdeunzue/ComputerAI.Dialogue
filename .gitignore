@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ComputerAI/bin/Debug/net6.0
+/.vs/ComputerAI/FileContentIndex/2a37e3d2-6e69-4415-9b56-8bbc2566edbb.vsidx
+/.vs/ComputerAI/FileContentIndex/read.lock
+/ComputerAI/obj
+/.vs/ComputerAI/FileContentIndex/edba2cd1-c8d7-4d59-9160-06ac52a6462a.vsidx
+/ComputerAI/bin/Release/net6.0
+/.vs/ComputerAI
+/.vs/ProjectEvaluation/computerai.metadata.v7.bin
+/.vs/ProjectEvaluation/computerai.projects.v7.bin
+/.vs/ComputerAI.Dialogue/FileContentIndex/e8dc3243-55a6-4f24-8361-bc5de2ebd66e.vsidx
+/.vs/ComputerAI.Dialogue/FileContentIndex/read.lock
+/.vs/ComputerAI.Dialogue/v17
+/.vs/ComputerAI.Dialogue/v17/.suo
+/.vs/ComputerAI.Dialogue/FileContentIndex/799f3628-da91-4c18-ad0f-8754a1d19097.vsidx
+/.vs
+/ComputerAI.Dialogue/bin
+/ComputerAI.Dialogue/obj
