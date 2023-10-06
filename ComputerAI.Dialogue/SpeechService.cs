@@ -11,13 +11,14 @@ namespace ComputerAI.Dialogue
 
             using var synthesizer = new SpeechSynthesizer(config);
             var ssml = $@"
-                    <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
-                        <voice name='{Constants.AmericanFemaleVoice}'>
-                            <prosody pitch='11%' contour='(11%, +15%) (60%, -23%) (80%, -34%)' rate='+35%'>
-                                {text}
-                            </prosody>
-                        </voice>
-                    </speak>";
+                <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='es-ES'>
+                    <voice name='{Constants.AmericanFemaleVoice}'>
+                        <prosody pitch='11%' contour='(11%, +15%) (60%, -23%) (80%, -34%)' rate='+35%'>
+                            {text}
+                        </prosody>
+                    </voice>
+                </speak>";
+
 
             await synthesizer.SpeakSsmlAsync(ssml);
         }

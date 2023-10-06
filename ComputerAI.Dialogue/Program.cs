@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using ComputerAI;
+using ComputerAI.Dialogue;
+using Microsoft.CognitiveServices.Speech.Dialog;
 
 class Program
 {
@@ -9,38 +11,20 @@ class Program
     static async Task Main()
     {
         Console.WriteLine("ComputerAI started.\n");
-        await AI.GreetHuman();
 
-        while (true)
+        int contador = 0;
+        var persona1 = new Persona1();
+        var persona2 = new Persona2();
+        
+        // Persona1 iniciará la conversación
+        var msgPersona1 = await AI.AnswerHuman("te has liado con ahsoka?", persona1);
+        var msgPersona2 = await AI.AnswerHuman(msgPersona1, persona2);
+
+        while (contador < 6)
         {
-            if (GetAsyncKeyState(Constants.ChatKey) != 0 || Constants.IsTextInteraction)
-            {
-                if (Constants.IsTextInteraction)
-                {
-                    Console.Write("You: ");
-                }
-
-                var input = Constants.IsVoiceInteraction ? await SpeechService.SpeechToTextAsync() : Console.ReadLine();
-
-                if (Constants.IsTextInteraction)
-                {
-                    Console.WriteLine();
-                }
-
-                if (string.IsNullOrEmpty(input))
-                {
-                    continue;
-                }
-
-                if (Constants.IsVoiceInteraction)
-                {
-                    Console.WriteLine(string.Format("You: {0}\n", input));
-                }
-
-                await AI.AnswerHuman(input);
-            }
-
-            Thread.Sleep(200);
+            contador++;
+            msgPersona1 = await AI.AnswerHuman(msgPersona2, persona1);
+            msgPersona2 = await AI.AnswerHuman(msgPersona1, persona2);
         }
     }
 }
