@@ -12,7 +12,7 @@ class Program
     {
         Console.WriteLine("ComputerAI.Dialogue started.\n");
 
-        var bot1 = new Bot("Anakin", "en-US-BrianNeural", "Let's roleplay, you will act as Anakin Skywalker");
+        var bot1 = new Bot("Anakin", "en-US-DavisNeural", "Let's roleplay, you will act as Anakin Skywalker");
         var bot2 = new Bot("Obi-wan", "en-US-JasonNeural", "Let's roleplay, you will act as Obi-wan Kenobi");
         
         var msgBot1 = await bot1.Answer("You were the chosen one");
