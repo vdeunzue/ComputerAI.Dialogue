@@ -5,20 +5,11 @@ namespace ComputerAI.Dialogue
 {
     public static class SpeechService
     {
-        public static async Task TextToSpeechAsync(string text)
+        public static async Task TextToSpeechAsync(string text, string ssml)
         {
             var config = SpeechConfig.FromSubscription(Constants.SubscriptionKey, Constants.ServiceRegion);
 
             using var synthesizer = new SpeechSynthesizer(config);
-            var ssml = $@"
-                <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='es-ES'>
-                    <voice name='{Constants.AmericanFemaleVoice}'>
-                        <prosody pitch='11%' contour='(11%, +15%) (60%, -23%) (80%, -34%)' rate='+35%'>
-                            {text}
-                        </prosody>
-                    </voice>
-                </speak>";
-
 
             await synthesizer.SpeakSsmlAsync(ssml);
         }

@@ -30,7 +30,7 @@ namespace ComputerAI.Dialogue
             }
 
             Console.WriteLine(string.Format("{0}: {1}\n", Name, response));
-            await SpeechService.TextToSpeechAsync(response);
+            await SpeechService.TextToSpeechAsync(response, GetSsml(response));
             return response;
         }
 
@@ -56,6 +56,18 @@ namespace ComputerAI.Dialogue
             var response = await conversation.GetResponseFromChatbotAsync();
 
             return response;
+        }
+
+        private string GetSsml(string input)
+        {
+            return $@"
+                <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
+                    <voice name='{Voice}'>
+                        <prosody contour='(11%, +15%) (60%, -23%) (80%, -34%)' rate='+35%'>
+                            {input}
+                        </prosody>
+                    </voice>
+                </speak>";
         }
     }
 }
