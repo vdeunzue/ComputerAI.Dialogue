@@ -1,30 +1,26 @@
-﻿using System.Runtime.InteropServices;
-using ComputerAI;
+﻿using ComputerAI;
 using ComputerAI.Dialogue;
-using Microsoft.CognitiveServices.Speech.Dialog;
 
 class Program
 {
-    [DllImport("user32.dll")]
-    public static extern short GetAsyncKeyState(int vKey);
+    private const int MAX_INTERACTIONS = 1;
 
     static async Task Main()
     {
-        Console.WriteLine("ComputerAI started.\n");
+        Console.WriteLine("ComputerAI.Dialogue started.\n");
 
-        int contador = 0;
-        var persona1 = new Persona1();
-        var persona2 = new Persona2();
+        var bot1 = new Bot("Anakin", "en-US-NancyNeural", "Let's roleplay, you will act as Anakin Skywalker");
+        var bot2 = new Bot("Obi-wan", "en-US-NancyNeural", "Let's roleplay, you will act as Obi-wan Kenobi");
         
-        // Persona1 iniciará la conversación
-        var msgPersona1 = await AI.AnswerHuman("te has liado con ahsoka?", persona1);
-        var msgPersona2 = await AI.AnswerHuman(msgPersona1, persona2);
+        var msgBot1 = await bot1.Answer("You were the chosen one");
+        string msgBot2;
 
-        while (contador < 6)
+        int counter = 0;
+        while (counter < MAX_INTERACTIONS)
         {
-            contador++;
-            msgPersona1 = await AI.AnswerHuman(msgPersona2, persona1);
-            msgPersona2 = await AI.AnswerHuman(msgPersona1, persona2);
+            counter++;
+            msgBot2 = await bot2.Answer(msgBot1);
+            msgBot1 = await bot1.Answer(msgBot2);
         }
     }
 }
