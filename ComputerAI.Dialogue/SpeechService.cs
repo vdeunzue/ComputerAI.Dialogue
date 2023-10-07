@@ -5,13 +5,13 @@ namespace ComputerAI.Dialogue
 {
     public static class SpeechService
     {
-        public static async Task TextToSpeechAsync(string text, string ssml)
+        public static async Task TextToSpeechAsync(string text)
         {
             var config = SpeechConfig.FromSubscription(Constants.SubscriptionKey, Constants.ServiceRegion);
 
             using var synthesizer = new SpeechSynthesizer(config);
 
-            await synthesizer.SpeakSsmlAsync(ssml);
+            await synthesizer.SpeakSsmlAsync(text);
         }
 
         public static async Task<string> SpeechToTextAsync()

@@ -7,14 +7,16 @@ namespace ComputerAI.Dialogue
     {
         public string Name { get; }
         public string Voice { get; }
+        private string Context { get; }
         private string Personality { get; }
 
         private Conversation? conversation;
 
-        public Bot(string name, string voice, string personality)
+        public Bot(string name, string voice, string context, string personality)
         {
             Name = name;
             Voice = voice;
+            Context = context;
             Personality = personality;
         }
 
@@ -30,7 +32,7 @@ namespace ComputerAI.Dialogue
             }
 
             Console.WriteLine(string.Format("{0}: {1}\n", Name, response));
-            await SpeechService.TextToSpeechAsync(response, GetSsml(response));
+            await SpeechService.TextToSpeechAsync(GetSsml(response));
             return response;
         }
 
@@ -47,6 +49,7 @@ namespace ComputerAI.Dialogue
             {
                 conversation = openAI.Chat.CreateConversation(new ChatRequest());
                 conversation.AppendSystemMessage(Personality);
+                conversation.AppendSystemMessage(Context);
                 conversation.AppendSystemMessage("Your sentences are short");
             }
 
