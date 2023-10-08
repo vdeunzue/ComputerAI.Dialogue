@@ -11,8 +11,8 @@ class Program
     {
         Console.WriteLine("ComputerAI.Dialogue started.\n");
 
-        var bot1 = new Bot("Anakin", "en-US-DavisNeural", "You are talking to Obi-wan Kenobi", "Let's roleplay, you will act as Anakin Skywalker");
-        var bot2 = new Bot("Obi-wan", "en-US-SteffanNeural", "You are talking to Anakin Skywalker", "Let's roleplay, you will act as Obi-wan Kenobi");
+        var bot1 = new Bot("Anakin", "en-US-DavisNeural", new string[] { "Your sentences are short", "You are talking to Obi-wan Kenobi" }, "Let's roleplay, you will act as Anakin Skywalker");
+        var bot2 = new Bot("Obi-wan", "en-US-SteffanNeural", new string[] { "Your sentences are short", "You are talking to Anakin Skywalker" }, "Let's roleplay, you will act as Obi-wan Kenobi");
 
         string msgBot2 = "You were my brother";
         var msgBot1 = await bot1.Answer(msgBot2);

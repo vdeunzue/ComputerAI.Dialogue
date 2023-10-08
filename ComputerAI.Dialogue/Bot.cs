@@ -7,12 +7,12 @@ namespace ComputerAI.Dialogue
     {
         public string Name { get; }
         public string Voice { get; }
-        private string Context { get; }
+        private string[] Context { get; }
         private string Personality { get; }
 
         private Conversation? conversation;
 
-        public Bot(string name, string voice, string context, string personality)
+        public Bot(string name, string voice, string[] context, string personality)
         {
             Name = name;
             Voice = voice;
@@ -49,8 +49,11 @@ namespace ComputerAI.Dialogue
             {
                 conversation = openAI.Chat.CreateConversation(new ChatRequest());
                 conversation.AppendSystemMessage(Personality);
-                conversation.AppendSystemMessage(Context);
-                conversation.AppendSystemMessage("Your sentences are short");
+
+                foreach (var context in Context)
+                {
+                    conversation.AppendSystemMessage(context);
+                }
             }
 
             var prompt = $"{inputText}\nAI:";
